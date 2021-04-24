@@ -30,3 +30,4 @@ target/
 *.jar
 *.war
 *.ear
+/build/
