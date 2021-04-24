@@ -12,7 +12,7 @@
 	<h3>로그인</h3>
 		<table cellpadding="5" cellspacing="0">
 		  <tr>
-		  	<td align="center" width="100">아이디11</td>
+		  	<td align="center" width="100">아이디1122</td>
 		  	<td>
 		  		<input type="text" name="id" placeholder="아이디 입력">
 		  		<div id="idDiv"></div>
