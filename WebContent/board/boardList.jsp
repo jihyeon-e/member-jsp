@@ -29,6 +29,10 @@ boardPaging.setPageSize(5);
 boardPaging.setTotalA(totalA);
 boardPaging.makePagingHTML();
 
+
+
+
+
 %> 
 
 <!DOCTYPE html>

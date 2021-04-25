@@ -12,9 +12,49 @@ int pg = Integer.parseInt(request.getParameter("pg"));
 
 BoardDAO boardDAO = BoardDAO.getInstance();
 
-if(seq!=0) {
+/* if(seq!=0) {
 	boardDAO.addHit(seq);
+} */
+
+
+
+Cookie[] cookies = request.getCookies(); //페이지의 모든 쿠키를 다 조회한다
+Cookie cookie = null;
+
+
+for(Cookie coo : cookies) { 
+	if(coo.getName().equals("cookieSeq")) {
+		cookie = coo;
+	}
 }
+
+if(cookie == null) {
+	cookie = new Cookie("cookieSeq", String.valueOf(seq));
+	response.addCookie(cookie);
+	cookie.setMaxAge(30*60);
+	boardDAO.addHit(seq);
+} else {
+	String cookieValue = cookie.getValue();
+	
+	String[] cookeValues = cookieValue.split(",");
+	//boardDAO.addHit(seq);
+	
+	boolean visit = false;
+	for(String value: cookeValues){
+		if(String.valueOf(seq).equals(value)){
+			visit = true;
+		}
+	}
+	
+	if(!visit) {
+		boardDAO.addHit(seq);
+		cookieValue = cookieValue + "," +seq;
+		cookie = new Cookie("cookieSeq", String.valueOf(seq));
+		response.addCookie(cookie);
+		cookie.setMaxAge(30*60);
+	}
+}
+
 
 BoardDTO boardDTO = boardDAO.getBoard(seq);
 

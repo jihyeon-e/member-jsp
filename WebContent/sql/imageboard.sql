@@ -10,4 +10,4 @@ CREATE TABLE imageboard(
  );
 
 
-create sequence seq_imageboard  nocache nocycle;
+create sequence seq_imageboard nocache nocycle;
