@@ -15,8 +15,7 @@ String realFolder = request.getServletContext().getRealPath("/storage");
 System.out.println("실제폴더 = " + realFolder);
 
 //업로드
-MultipartRequest multi = new MultipartRequest(request,
-		  									  realFolder,
+MultipartRequest multi = new MultipartRequest(request, realFolder,
 											  5*1024*1024,
 											  "UTF-8");
 

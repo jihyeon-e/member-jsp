@@ -155,5 +155,29 @@ public class ImageboardDAO {
 		return totalA;
 	}
 	
+//----------------------------------------------------
+	public void delete(int seq) {
+		String sql = "delete from imageboard where seq=?";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			
+			pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 //----------------------------------------------------	
 }
