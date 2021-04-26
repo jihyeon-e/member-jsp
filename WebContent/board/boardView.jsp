@@ -12,50 +12,19 @@ int pg = Integer.parseInt(request.getParameter("pg"));
 
 BoardDAO boardDAO = BoardDAO.getInstance();
 
-/* if(seq!=0) {
-	boardDAO.addHit(seq);
-} */
-
-
-
-Cookie[] cookies = request.getCookies(); //페이지의 모든 쿠키를 다 조회한다
-Cookie cookie = null;
-
-
-for(Cookie coo : cookies) { 
-	if(coo.getName().equals("cookieSeq")) {
-		cookie = coo;
-	}
-}
-
-if(cookie == null) {
-	cookie = new Cookie("cookieSeq", String.valueOf(seq));
-	response.addCookie(cookie);
-	cookie.setMaxAge(30*60);
-	boardDAO.addHit(seq);
-} else {
-	String cookieValue = cookie.getValue();
-	
-	String[] cookeValues = cookieValue.split(",");
-	//boardDAO.addHit(seq);
-	
-	boolean visit = false;
-	for(String value: cookeValues){
-		if(String.valueOf(seq).equals(value)){
-			visit = true;
+//조회수 새로고침 방지
+Cookie[] ar = request.getCookies(); //페이지의 모든 쿠키를 다 가져옴
+if(ar != null) {
+	for(int i=0; i<ar.length; i++) {
+		if(ar[i].getName().equals("memHit")){
+			boardDAO.addHit(seq); //조회수 증가
+			ar[i].setMaxAge(0); //쿠키 삭제
+			response.addCookie(ar[i]);
 		}
-	}
-	
-	if(!visit) {
-		boardDAO.addHit(seq);
-		cookieValue = cookieValue + "," +seq;
-		cookie = new Cookie("cookieSeq", String.valueOf(seq));
-		response.addCookie(cookie);
-		cookie.setMaxAge(30*60);
-	}
-}
+	} //for
+} //if
 
-
+//1사람의 글을 가져오기
 BoardDTO boardDTO = boardDAO.getBoard(seq);
 
 %>

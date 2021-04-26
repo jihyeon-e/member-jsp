@@ -29,8 +29,12 @@ boardPaging.setPageSize(5);
 boardPaging.setTotalA(totalA);
 boardPaging.makePagingHTML();
 
-
-
+//조회수 새로고침 방지
+if(session.getAttribute("memId") != null) {
+	Cookie cookie = new Cookie("memHit", "0"); //쿠키 생성
+	cookie.setMaxAge(30*60);
+	response.addCookie(cookie); //클라이언트에게 보내기
+}
 
 
 %> 

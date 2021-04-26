@@ -73,7 +73,6 @@ public class ImageboardDAO {
 				if(pstmt!=null) pstmt.close();
 				if(conn!=null) conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -82,14 +81,19 @@ public class ImageboardDAO {
 	}
 
 //----------------------------------------------------	
-	public List<ImageboardDTO> getImageboardList() {
+	public List<ImageboardDTO> getImageboardList(int startNum, int endNum) {
 		List<ImageboardDTO> list = new ArrayList<ImageboardDTO>();
 		
-		String sql = "select * from imageboard order by seq desc";
+		String sql = "select * from "
+				   + " (select rownum rn, tt. * from "
+				   + " (select * from imageboard order by seq desc)tt " 
+				   + " )where rn>=? and rn<=?";
 		
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
 			
 			rs = pstmt.executeQuery();
 			
@@ -105,7 +109,7 @@ public class ImageboardDAO {
 				imageboardDTO.setLogtime(rs.getDate("logtime"));
 				
 				list.add(imageboardDTO);
-			}
+			} //while
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,5 +126,34 @@ public class ImageboardDAO {
 		return list;
 	}
 //----------------------------------------------------	
-
+	public int getTotalA() {
+		int totalA=0;
+		
+		String sql = "select count(*) as count from imageboard";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				totalA = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+				if(rs!=null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		
+		return totalA;
+	}
+	
+//----------------------------------------------------	
 }

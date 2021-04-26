@@ -37,6 +37,7 @@ public class BoardDAO {
 		Context context;
 		try {
 			context = new InitialContext();
+			//모든 커넥션을 데이터소스에게 저장
 			ds = (DataSource)context.lookup("java:comp/env/jdbc/oracle");
 		} catch (NamingException e) {
 			e.printStackTrace();

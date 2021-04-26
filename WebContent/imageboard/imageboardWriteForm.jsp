@@ -59,7 +59,7 @@
  
  <tr>
  	<td colspan="2" align="center">
- 		<input type="submit" value="이미지등록">
+ 		<input type="submit" value="이미지등록"> <!-- submit을 타고 가는 데이터는 name 속성을 가지고 넘어감 -->
  		<input type="reset" value="다시작성">
  	</td>
  </tr>

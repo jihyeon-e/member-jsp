@@ -29,6 +29,6 @@ body {
 <%} %>
 	
 <a href="../board/boardList.jsp?pg=1">목록</a><br>
-<a href="../imageboard/imageboardList.jsp">이미지목록</a><br>
+<a href="../imageboard/imageboardList.jsp?pg=1">이미지목록</a><br>
 </body>
 </html>
