@@ -1,0 +1,74 @@
+@charset "UTF-8";
+@import url(common.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+/*-------------------header start----------------------*/
+#writeFormHeader{
+	position: relative;
+	padding-top: 50px;
+	padding-left: 400px;
+    font: bold 60px/100px 'Nanum Gothic', sans-serif;
+}
+#writeFormContainer{
+	position: relative;
+	padding-top: 30px;
+	padding-left: 420px;
+	font: bold 19px/40px 'Nanum Gothic', sans-serif;
+}
+
+#loginFormHeader{
+	position: relative;
+	padding-top: 150px;
+	padding-left: 480px;
+    font: bold 60px/100px 'Nanum Gothic', sans-serif;
+}
+#loginFormContainer{
+	position: relative;
+	padding-top: 30px;
+	padding-left: 475px;
+	font: bold 25px/50px 'Nanum Gothic', sans-serif;
+}
+
+#indexHeader{
+	position: relative;
+	padding-top: 150px;
+	padding-left: 515px;
+    font: bold 80px/100px 'Nanum Gothic', sans-serif;
+}
+#indexContainer{
+	position: relative;
+	padding-top: 90px;
+	padding-left: 370px;
+	font: bold 20px/50px 'Nanum Gothic', sans-serif;
+}
+.mainnav li{
+	float: left;
+	padding: 0 50px;
+}
+
+#boardWriteFormHeader{
+	position: relative;
+	padding-top: 80px;
+	padding-left: 500px;
+    font: bold 60px/100px 'Nanum Gothic', sans-serif;
+}
+#boardWriteFormContainer{
+	position: relative;
+	padding-top: 20px;
+	padding-left: 300px;
+	font: 30px/50px 'Nanum Gothic', sans-serif;
+}
+
+#boardListHeader{
+	position: relative;
+	padding-top: 80px;
+	padding-left: 500px;
+    font: bold 60px/100px 'Nanum Gothic', sans-serif;
+}
+#boardListContainer{
+	position: relative;
+	padding-top: 20px;
+	padding-left: 160px;
+	font: 20px/50px 'Nanum Gothic', sans-serif;
+}
